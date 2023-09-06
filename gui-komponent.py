@@ -1,18 +1,24 @@
 import tkinter as gui
 
+# Global eine Variable verwenden, um das aktuelle Modalfenster zu verfolgen
+aktuelles_modal  = None
+
 def suchen():
-    # Modale Fenster erstellen
-    modal = gui.Toplevel(window_python)
-    modal.geometry("300x300")
-    modal.title("Suchen Modal")
+    global aktuelles_modal
     
-    # Inhalt des Modal-Fensters
-    label = gui.Label(modal, text="Inhalt des Modal-Fensters")
-    label.pack(padx=20, pady=20)
-    
-    # Schließen-Schaltfläche
-    close_button = gui.Button(modal, text="Schließen", command=modal.destroy)
-    close_button.pack(pady=10)
+    # Wenn bereits ein aktives Modal-Fenster existiert, verhindere das Öffnen eines neuen
+    if aktuelles_modal is None or not aktuelles_modal.winfo_exists():
+        aktuelles_modal = gui.Toplevel(window_python)
+        aktuelles_modal.title("Suchen Modal")
+        
+        # Inhalt des Modal-Fensters
+        label = gui.Label(aktuelles_modal, text="Inhalt des Modal-Fensters")
+        label.pack(padx=20, pady=20)
+        
+        # Schließen-Schaltfläche
+        schließen_button = gui.Button(aktuelles_modal, text="Schließen", command=aktuelles_modal.destroy)
+        schließen_button.pack(pady=10)
+        
 def speichern():
     return print('Speichern')
 
