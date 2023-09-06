@@ -1,8 +1,18 @@
 import tkinter as gui
 
 def suchen():
-    return print('Hallo Welt')
-
+    # Modale Fenster erstellen
+    modal = gui.Toplevel(window_python)
+    modal.geometry("300x300")
+    modal.title("Suchen Modal")
+    
+    # Inhalt des Modal-Fensters
+    label = gui.Label(modal, text="Inhalt des Modal-Fensters")
+    label.pack(padx=20, pady=20)
+    
+    # Schließen-Schaltfläche
+    close_button = gui.Button(modal, text="Schließen", command=modal.destroy)
+    close_button.pack(pady=10)
 def speichern():
     return print('Speichern')
 
